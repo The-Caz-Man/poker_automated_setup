@@ -1,0 +1,2 @@
+Player Count,Player Names,Buy-in Amount,Poker Set,Chip Values
+5,"['Caz', 'Noah', 'Jake', 'Adam', 'Damon']",15.0,csv_files/saved_sets/noah_set.csv,"{'White': 0.05, 'Red': 0.1, 'Green': 0.25, 'Blue': 1.0, 'Black': 5.0}"
