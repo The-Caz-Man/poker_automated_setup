@@ -60,5 +60,19 @@ def get_chip_data(colors):
                 print("Invalid input. Please enter a valid number.")
     return chip_data
 
+def unpack_set_csv(file_name):
+    chip_data = {}
+    with open(file_name, mode='r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            for color in row:
+                chip_data[color] = int(row[color])
+    return chip_data
+
+class PokerSet:
+    def __init__(self, file_name):
+        self.file_name = file_name
+        self.chip_data = unpack_set_csv(file_name)
+
 if __name__ == "__main__":
     create_set_csv()

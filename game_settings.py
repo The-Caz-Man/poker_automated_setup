@@ -98,5 +98,25 @@ def get_chip_values(poker_set):
                         print("Invalid input. Please enter a valid number.")
     return chip_values
 
+def unpack_settings_csv():
+    file_name = "csv_files/previous_game_settings.csv"
+    with open(file_name, mode='r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            player_count = int(row["Player Count"])
+            player_names = eval(row["Player Names"])
+            buyin = float(row["Buy-in Amount"])
+            poker_set = row["Poker Set"]
+            chip_values = eval(row["Chip Values"])
+            return player_count, player_names, buyin, poker_set, chip_values
+        
+class GameSettings:
+    def __init__(self, player_count, player_names, buyin, poker_set, chip_values):
+        self.player_count = player_count
+        self.player_names = player_names
+        self.buyin = buyin
+        self.poker_set = poker_set
+        self.chip_values = chip_values
+
 if __name__ == "__main__":
     create_game_settings_csv()
