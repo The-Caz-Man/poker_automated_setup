@@ -118,5 +118,17 @@ class GameSettings:
         self.poker_set = poker_set
         self.chip_values = chip_values
 
+    def display_settings(self):
+        print("Current Game Settings:")
+        print(f"Player Count: {self.player_count}")
+        print("Player Names:", ", ".join(self.player_names))
+        print(f"Buy-in Amount: {self.buyin:.2f}")
+        set_name = self.poker_set.replace("csv_files/saved_sets/", "").replace(".csv", "")
+        print(f"Poker Set: {set_name}")
+        print("Chip Values:", end=" ")
+        for color, value in self.chip_values.items():
+            print(f"{color}: {value:.2f}", end=", ")
+        print()
+
 if __name__ == "__main__":
     create_game_settings_csv()
