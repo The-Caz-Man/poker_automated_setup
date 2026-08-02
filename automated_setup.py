@@ -1,5 +1,6 @@
 import game_settings
 import poker_sets
+import random
 
 
 def create_player_inventory(settings):
@@ -71,13 +72,35 @@ def distribute_chips(player_inventories, stack_counts, settings, poker_set, colo
     else:
         return
 
-    
-    
 
 
-    
-        
-    
+def display_setup(player_inventories):
+    player_list = [player for player in player_inventories]
+    random.shuffle(player_list)
+    seat = 1
+    for player in player_list:
+        print()
+        if seat == 1:
+            print(f"{"Dealer":<15}", end="")
+        else:
+            if (seat % 10) == 1:
+                suffix = "st"
+            elif (seat % 10) == 2:
+                suffix = "nd"
+            elif (seat % 10) == 3:
+                suffix = "rd"
+            else:
+                suffix = "th"
+            position = f"{seat}{suffix} seat"
+            print(f"{position:<15}", end="")
+        print(f"{player:>15}")
+        print("-" * 30)
+        for chip, count in player_inventories[player].items():
+            if (chip != "Total Value") and (count != 0):
+                print(f"{chip:<15}", end="")
+                print(f"{int(count):>15}")
+        seat += 1
+
     
 
 if __name__ == "__main__":
@@ -87,4 +110,4 @@ if __name__ == "__main__":
     player_inventories = create_player_inventory(settings)
     stack_counts = create_stacks_counts(settings)
     distribute_chips(player_inventories, stack_counts, settings, poker_set)
-    print(player_inventories)
+    display_setup(player_inventories)
